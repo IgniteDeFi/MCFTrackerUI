@@ -3,6 +3,7 @@ import {
   getCurrentWalletConnected,
   approveTokens,
 } from "../Utils/walletInteract";
+/* eslint-disable no-unused-vars */
 import background from "../Images/background.png";
 import boxes from "../Images/boxes.png";
 import logo from "../Images/logo.png";
@@ -81,6 +82,7 @@ const initialCirclesState = [
 
 export const LuckyScratchPage = () => {
   const prices = initialPricesState;
+  /* eslint-disable no-unused-vars */
   const [totalMCFPaid, setTotalMCFPaid] = useState(0);
   const [scratchCardSold, setScratchCardSold] = useState(0);
   const [totalPlayers, setTotalPlayers] = useState(0);
