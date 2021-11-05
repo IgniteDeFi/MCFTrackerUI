@@ -76,6 +76,11 @@ export const LuckyScratchPage = () => {
   const [factorySold, setFactorySold] = useState("");
   const [cardsSold, setCardsSold] = useState("");
   const [players, setPlayers] = useState("");
+  const [playerStatus, setPlayerStatus] = useState({
+    isplaying: false,
+    lastWonAmount: 0,
+  });
+  const [allowance, setAllowance] = useState("");
 
   const [message, setMessage] = useState({
     showMessage: false,
@@ -84,6 +89,14 @@ export const LuckyScratchPage = () => {
   });
 
   const { showMessage, success, value } = message;
+
+  async function pullAllowance(permissionAddress, contractAddress) {
+    let spendingAmount = await mcfHandler.methods
+      .allowance(permissionAddress, contractAddress)
+      .call();
+    setAllowance(spendingAmount);
+    console.log(spendingAmount);
+  }
 
   async function getUserBalance(userAddress) {
     let userTokenBalance = await mcfHandler.methods
@@ -118,6 +131,8 @@ export const LuckyScratchPage = () => {
       setWallet(address);
       addWalletListener();
       if (wallet.length > 0) {
+        getUserBalance(wallet);
+        pullAllowance(wallet, mcfHandler);
         getUserBalance(wallet);
       }
     }
@@ -316,7 +331,7 @@ export const LuckyScratchPage = () => {
           <button
             className="claimDividends"
             onClick={() => {
-              getUserBalance(wallet);
+              //console.log(allowance);
               wallet.length <= 0 ? console.log("no") : getUserBalance(wallet);
             }}
           >

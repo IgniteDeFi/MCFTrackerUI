@@ -35,6 +35,7 @@ export const Stats = () => {
       });
     }
   }
+
   async function pullDividends() {
     let dividends = await mcfHandler.methods
       .getTotalDividendsDistributed()
@@ -67,7 +68,7 @@ export const Stats = () => {
     <div className="BoxContainers">
       <img src={upperCables} alt="" />
       <div className="totalDivs">
-        <h1>Total BUSD reflected to holders #128151</h1>
+        <h1>Total BUSD reflected to holders </h1>
         <span className="NumberColor">{dividend / 10 ** 18} BUSD</span>
       </div>
       <img src={midCable} alt="" />
